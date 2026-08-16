@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#120d18">
+  <title>Para Yosi ❤️</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #fff;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255, 140, 190, .16), transparent 28%),
+        radial-gradient(circle at 80% 35%, rgba(255, 190, 210, .10), transparent 30%),
+        linear-gradient(145deg, #100b15, #241322 55%, #0d0910);
+      overflow-x: hidden;
+    }
+
+    .noise {
+      position: fixed; inset: 0; pointer-events: none; opacity: .035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      z-index: 20;
+    }
+
+    section {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 70px 20px;
+      position: relative;
+    }
+
+    .hero {
+      text-align: center;
+      background:
+        linear-gradient(rgba(10,7,12,.35), rgba(10,7,12,.78)),
+        url("Inicio.jpg") center/cover;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, #100b15 2%, transparent 45%, rgba(10,7,12,.35));
+    }
+
+    .content {
+      width: min(950px, 100%);
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .eyebrow {
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-size: .75rem;
+      opacity: .8;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 11vw, 7rem);
+      line-height: .9;
+      margin: 0 0 22px;
+      font-weight: 500;
+      text-shadow: 0 8px 35px rgba(0,0,0,.45);
+    }
+
+    h2 {
+      font-size: clamp(2rem, 6vw, 4rem);
+      margin: 0 0 20px;
+      font-weight: 500;
+    }
+
+    p {
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.8;
+      font-size: 1.03rem;
+      color: rgba(255,255,255,.86);
+    }
+
+    .subtitle {
+      max-width: 650px;
+      margin: 0 auto 35px;
+    }
+
+    .btn {
+      border: 1px solid rgba(255,255,255,.4);
+      color: white;
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(12px);
+      padding: 15px 26px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: .3s;
+    }
+
+    .btn:hover { transform: translateY(-3px); background: rgba(255,255,255,.16); }
+
+    .photo-section {
+      grid-template-columns: minmax(280px, 650px) minmax(280px, 500px);
+      gap: clamp(30px, 6vw, 90px);
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .photo-section.reverse .photo { order: 2; }
+    .photo-section.reverse .text { order: 1; }
+
+    .photo {
+      width: 100%;
+      max-height: 78vh;
+      object-fit: cover;
+      border-radius: 24px;
+      box-shadow: 0 30px 70px rgba(0,0,0,.45);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .text { text-align: left; }
+    .number {
+      color: #f4b4cc;
+      letter-spacing: 3px;
+      font: 700 .8rem "Segoe UI", Arial, sans-serif;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .quote {
+      border-left: 2px solid rgba(244,180,204,.7);
+      padding-left: 20px;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 28px;
+      padding: clamp(28px, 5vw, 60px);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 30px 80px rgba(0,0,0,.28);
+    }
+
+    .letter {
+      max-width: 850px;
+      text-align: left;
+    }
+
+    .letter p { margin: 0 0 18px; }
+
+    .final {
+      background:
+        linear-gradient(rgba(8,5,10,.25), rgba(8,5,10,.82)),
+        url("feliz cumple (2).jpg") center/cover;
+      text-align: center;
+    }
+
+    .final .content { max-width: 850px; }
+    .final h2 { font-size: clamp(3rem, 9vw, 6rem); }
+
+    .signature {
+      margin-top: 35px;
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+
+    .scroll {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font: .75rem "Segoe UI", Arial, sans-serif;
+      letter-spacing: 2px;
+      opacity: .65;
+      animation: bounce 2s infinite;
+    }
+
+    .music {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 30;
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(20,12,24,.72);
+      color: white;
+      padding: 11px 16px;
+      border-radius: 999px;
+      backdrop-filter: blur(12px);
+      cursor: pointer;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -30px;
+      z-index: 25;
+      pointer-events: none;
+      animation: floatUp linear forwards;
+      opacity: .75;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .reveal.show { opacity: 1; transform: translateY(0); }
+
+    @keyframes floatUp {
+      from { transform: translateY(0) rotate(0deg); opacity: 0; }
+      15% { opacity: .8; }
+      to { transform: translateY(-115vh) rotate(25deg); opacity: 0; }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -8px); }
+    }
+
+    @media (max-width: 800px) {
+      section, .photo-section { display: flex; flex-direction: column; }
+      .photo-section.reverse .photo, .photo-section.reverse .text { order: initial; }
+      .photo { max-height: 65vh; }
+      .text { text-align: center; }
+      .quote { text-align: left; }
+      h1 { font-size: clamp(3.4rem, 18vw, 6rem); }
+    }
+  </style>
+</head>
+
+<body>
+<div class="noise"></div>
+
+<button class="music" id="musicBtn" onclick="toggleMusic()">🎵 Música</button>
+<audio id="music" loop>
+  <!-- Coloca aquí tu archivo autorizado de la canción con este nombre:
+       die-with-a-smile.mp3
+  -->
+  <source src="die-with-a-smile.mp3" type="audio/mpeg">
+</audio>
+
+<section class="hero">
+  <div class="content reveal">
+    <div class="eyebrow">Una pequeña sorpresa para ti</div>
+    <h1>Para Yosi ❤️</h1>
+    <p class="subtitle">Hay algo que preparé especialmente para ti. No es algo enorme, pero sí está hecho con muchísimo cariño.</p>
+    <button class="btn" onclick="document.getElementById('cumple').scrollIntoView()">Abrir mi carta 💌</button>
+  </div>
+  <div class="scroll">DESLIZA ↓</div>
+</section>
+
+<section id="cumple">
+  <div class="content card reveal">
+    <div class="eyebrow">17 de agosto</div>
+    <h2>¡Feliz cumpleaños, Yosi! 🎂❤️</h2>
+    <p>Hoy es un día especial porque hace algunos años llegó al mundo una persona que terminaría siendo muy importante para mí.</p>
+    <p>Y aunque la vida cambie y las cosas también cambien, quería regalarte un pequeño espacio lleno de recuerdos bonitos para que hoy puedas sonreír.</p>
+  </div>
+</section>
+
+<section class="photo-section">
+  <img class="photo reveal" src="momento mas divertido.jpg" alt="Nuestro momento más divertido">
+  <div class="text reveal">
+    <div class="number">01 · Un momento divertido</div>
+    <h2>Las cosas más simples también se vuelven recuerdos.</h2>
+    <p class="quote">Porque contigo cada momento aunque sea simple siempre fue divertido para mi 💙.</p>
+  </div>
+</section>
+
+<section class="photo-section reverse">
+  <img class="photo reveal" src="Momento feliz.jpg" alt="Un momento feliz">
+  <div class="text reveal">
+    <div class="number">02 · Un momento feliz</div>
+    <h2>Verte feliz también me hacía feliz.</h2>
+    <p class="quote">Hay momentos que parecen pequeños, pero cuando los recuerdo me doy cuenta de lo bonito que fue compartirlos contigo💖.</p>
+  </div>
+</section>
+
+<section class="photo-section">
+  <img class="photo reveal" src="un recuerdo especial.jpg" alt="Un recuerdo especial">
+  <div class="text reveal">
+    <div class="number">03 · Un recuerdo especial</div>
+    <h2>Uno de esos recuerdos que guardo con cariño.</h2>
+    <p class="quote">Quizás con el tiempo cambien muchas cosas, pero eso no hace que los momentos bonitos que vivimos dejen de ser importantes y es mas se vuelven aun mas importantes para mi 💕.</p>
+  </div>
+</section>
+
+<section class="photo-section reverse">
+  <img class="photo reveal" src="Tú.jpg" alt="Yosi">
+  <div class="text reveal">
+    <div class="number">04 · Tú</div>
+    <h2>Hoy quiero hablar de ti.</h2>
+    <p class="quote">Yosi, espero que nunca olvides lo bonita que eres, no solamente por fuera, sino por todo lo que llevas dentro.</p>
+    <p>Hoy mereces sentirte querida, valorada y especial. Porque lo eres.</p>
+  </div>
+</section>
+
+<section class="photo-section">
+  <img class="photo reveal" src="Gracias por los recuerdos.jpg" alt="Gracias por los recuerdos">
+  <div class="text reveal">
+    <div class="number">05 · Gracias</div>
+    <h2>Gracias por los recuerdos.</h2>
+    <p class="quote">Gracias por cada risa, cada conversación, cada salida, cada abrazo y cada pequeño momento que terminó convirtiéndose en un recuerdo para mí.</p>
+  </div>
+</section>
+
+<section>
+  <div class="content card letter reveal">
+    <div class="number">06 · Una carta para ti</div>
+    <h2>Para mi Chikis 💞</h2>
+    <p>Yos, hoy quería aprovechar tu cumpleaños para decirte algo que quizás no siempre supe expresar de la mejor manera y gracias por dejarme pasar un año mas de tu vida junto a ti.</p>
+    <p>Eres una persona muy importante para mí y compartimos momentos que voy a recordar con muchísimo cariño. Hubo risas, planes, conversaciones, detalles, días buenos y también momentos difíciles. Todo eso forma parte de una historia que significó mucho para mí.</p>
+    <p>No quiero que este mensaje sea una forma de pedirte nada ni de hacerte sentir presión. Solamente quería que, en tu cumpleaños, recibieras un pequeño recordatorio de que hubo alguien que se alegró muchísimo de conocerte y que genuinamente deseó verte feliz.</p>
+    <p>Deseo que este nuevo año de tu vida venga lleno de tranquilidad, personas que te quieran bien, sueños que puedas cumplir y muchísimas razones para sonreír, no te desvies de tu camino , no tomes demasiado seguido, mas que todo porque te hace mal, recuerda que amigos no son esas personas que solo quieren llevarte a tomar cada rato.</p>
+    <p>Se que llegaran nuevas personas a tu vida, y como dices talvez en algun momento decidas emparejarte con una de ellas yo no puedo evitar eso, en este momento me duele aun demasiado saber que ya no stamos como pareja aun cuando yo tengo amor hacia ti, me gustaria recuperarlo, pero se que tu ya no sientes lo mismo, y eso me duele demasiado, pero no puedo obligarte a sentir algo que ya no sientes, solo quiero que sepas que yo siempre te voy a querer y que siempre voy a desear lo mejor para ti.</p>
+    <p>Habran dias dificiles como el del dia viernes que me contaste hasta ponerte a llorar, pero se que tu lograras tus metas porque eres una guerrera, alguien que no se rinde con nada, se que puedes sola, pero no estas sola me tienes a mi si lo necesitas, TE AMO 💖, te admiro demasiado mi amor, NO TE RINDAS.</p>
+    <p>Y sobre todo, deseo que nunca dejes de ser tú. Esa Yosi que tiene sus ocurrencias, sus formas de hacer reír y esa manera tan suya de hacer especiales ciertos momentos.</p>
+    <p>Feliz vuelta al sol Numero 22 amorcito 😘</p>
+    <p>Gracias por todos los recuerdos que me permitiste guardar.</p>
+    <p class="signature">Con muchísimo cariño,<br>Cayos ❤️</p>
+  </div>
+</section>
+
+<section>
+  <div class="content card reveal" style="text-align:center">
+    <div class="number">07 · Hoy eres la princesa 👑</div>
+    <h2>Hoy quiero que te sientas especial.</h2>
+    <p>Que este día sea tuyo. Que recibas abrazos, sonrisas, detalles y todo ese cariño que mereces.</p>
+    <p>Porque aunque solamente sea una página pequeña, la hice pensando en que cuando la abras puedas sentir por un momento lo importante que eres.</p>
+    <p>Mi pequeña princesa, espero que este día sea tan bonito como tú. Que lo disfrutes y que te sientas querida, porque lo eres.</p>
+    <div style="font-size:4rem;margin-top:25px">👑🌷✨</div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="content reveal">
+    <div class="eyebrow">Tu día, Yosi</div>
+    <h2>Feliz cumpleaños, Chikis. 👑❤️</h2>
+    <p>Espero que la vida te regale muchísimos momentos bonitos, sueños cumplidos y razones para sonreír.</p>
+    <p>Y espero que, cuando algún día vuelvas a mirar estas fotos, recuerdes que fueron parte de una etapa que alguien guardó con mucho cariño (OJALA VOLVAMOS XD "Si tu deseas claro")</p>
+    <p class="signature"><strong>Feliz cumpleaños, amor. ❤️</strong></p>
+  </div>
+</section>
+
+<script>
+  // Animaciones al aparecer en pantalla
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add("show");
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+  // Corazones flotantes
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = Math.random() > .35 ? "♥" : "♡";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (12 + Math.random() * 22) + "px";
+    heart.style.animationDuration = (6 + Math.random() * 6) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 13000);
+  }
+
+  setInterval(createHeart, 900);
+
+  // Música: los navegadores suelen bloquear el autoplay.
+  const audio = document.getElementById("music");
+  const btn = document.getElementById("musicBtn");
+
+  function toggleMusic() {
+    if (audio.paused) {
+      audio.play().then(() => btn.textContent = "⏸️ Pausar").catch(() => {
+        alert("Agrega el archivo 'die-with-a-smile.mp3' en esta misma carpeta y vuelve a intentarlo.");
+      });
+    } else {
+      audio.pause();
+      btn.textContent = "🎵 Música";
+    }
+  }
+</script>
+</body>
+</html>
